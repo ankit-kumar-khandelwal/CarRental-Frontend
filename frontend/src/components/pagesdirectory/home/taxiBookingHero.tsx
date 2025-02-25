@@ -1,9 +1,13 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Car from '../assets/car.png';
-import '../css/car.css';
+import '../../css/car.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const TaxiBookingHero = () => {
+
   return (
    
       <div className="container mx-auto p-4 lg:p-6">

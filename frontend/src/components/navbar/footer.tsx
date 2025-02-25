@@ -15,7 +15,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({
   companyName = "Aaradhya Tour and Travel",
-  designedBy = "Delhi Car Booking",
+  designedBy = "Ankit Khandelwal",
   startYear = 2016
 }) => {
   const currentYear = new Date().getFullYear();

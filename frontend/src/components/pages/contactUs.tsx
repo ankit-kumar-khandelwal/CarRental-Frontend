@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ContactDescription from '../contact-us/contactDescription';
-import ContactForm from '../contact-us/contactForm';
+import ContactDescription from '../pagesdirectory/contact-us/contactDescription';
+import ContactForm from '../pagesdirectory/contact-us/contactForm';
 
 
 const ContactPage: React.FC = () => {

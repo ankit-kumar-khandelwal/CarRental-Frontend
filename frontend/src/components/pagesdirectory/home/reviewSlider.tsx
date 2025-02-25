@@ -76,7 +76,7 @@ const ReviewSlider: React.FC<ReviewSliderProps> = ({
 
   return (
     <div className="w-full max-w-7xl mx-auto px-20 py-8">
-      <h2 className="text-3xl font-bold text-orange text-center mb-8">Customer Reviews</h2>
+      <h2 className="text-3xl font-bold text-orange-600 text-center mb-8">Customer Reviews</h2>
       
       <div className="relative">
         {/* Reviews Container */}

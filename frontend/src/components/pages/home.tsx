@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import TaxiBookingHero from '../home/taxiBookingHero';
-import CarBookingForm from '../home/carBookingForm';
-import ServicesGrid from '../home/servicesGrid';
-import OurServices from '../home/ourServices';
-import VehicleSlider from '../home/vehiclesRanges';
-import CorporateCabLanding from '../home/corporateCabLanding';
-import TouristPlaces from '../home/touristPlaces';
-import ReviewSlider from '../home/reviewSlider';
+import TaxiBookingHero from '../pagesdirectory/home/taxiBookingHero';
+import CarBookingForm from '../pagesdirectory/home/carBookingForm';
+import ServicesGrid from '../pagesdirectory/home/servicesGrid';
+import OurServices from '../pagesdirectory/home/ourServices';
+import VehicleSlider from '../pagesdirectory/home/vehiclesRanges';
+import CorporateCabLanding from '../pagesdirectory/home/corporateCabLanding';
+import TouristPlaces from '../pagesdirectory/home/touristPlaces';
+import ReviewSlider from '../pagesdirectory/home/reviewSlider';
 
 // LazyComponent wrapper for handling intersection observer
 interface LazyComponentProps {

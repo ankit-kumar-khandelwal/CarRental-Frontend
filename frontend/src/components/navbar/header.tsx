@@ -1,50 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MessageCircle, Menu, X, ChevronDown } from 'lucide-react';
 
+interface TaxiService {
+  _id: string;
+  title: string;
+  titleDescription: string;
+  subTitle: string;
+  subTitleDescription: string;
+  imageUrl: string;
+  id: string;
+  name: string;
+  url: string;
+  createdAt: string;
+  __v: number;
+}
+
+interface LuxuryCar {
+  _id: string;
+  title: string;
+  titleDescription: string;
+  subTitle: string;
+  subTitleDescription: string;
+  imageUrl: string;
+  id: string;
+  name: string;
+  url: string;
+  createdAt: string;
+  __v: number;
+}
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [taxiServices, setTaxiServices] = useState<{ url: string; name: string }[]>([]);
-  const [luxuryCars, setLuxuryCars] = useState<{ url: string; name: string }[]>([]);
+  const [taxiServices, setTaxiServices] = useState<TaxiService[]>([]);
+  const [luxuryCars, setLuxuryCars] = useState<LuxuryCar[]>([]);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  // Static fallback data
-  const staticTaxiServices = [
-    { url: '/taxi/local', name: 'Local City Taxi' },
-    { url: '/taxi/outstation', name: 'Outstation Taxi' },
-    { url: '/taxi/airport', name: 'Airport Transfer' },
-    { url: '/taxi/corporate', name: 'Corporate Cab Service' },
-    { url: '/taxi/wedding', name: 'Wedding Car Rental' }
-  ];
-
-  const staticLuxuryCars = [
-    { url: '/luxury/mercedes', name: 'Mercedes Benz' },
-    { url: '/luxury/bmw', name: 'BMW' },
-    { url: '/luxury/audi', name: 'Audi' },
-    { url: '/luxury/rolls-royce', name: 'Rolls Royce' },
-    { url: '/luxury/jaguar', name: 'Jaguar' }
-  ];
 
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
         const [taxiResponse, luxuryResponse] = await Promise.all([
-          fetch('/api/taxi-services'),
-          fetch('/api/luxury-cars')
+          fetch('http://localhost:3000/api/taxiservices'),
+          fetch('http://localhost:3000/api/luxurycars')
         ]);
 
-        if (!taxiResponse.ok || !luxuryResponse.ok) {
-          throw new Error('API response not ok');
+        if (!taxiResponse.ok) {
+          throw new Error('Taxi services API response not ok');
+        }
+
+        if (!luxuryResponse.ok) {
+          throw new Error('Luxury cars API response not ok');
         }
 
         const taxiData = await taxiResponse.json();
         const luxuryData = await luxuryResponse.json();
-
+        
         setTaxiServices(taxiData);
         setLuxuryCars(luxuryData);
       } catch (error) {
-        console.warn('Failed to fetch menu data, using static data:', error);
-        setTaxiServices(staticTaxiServices);
-        setLuxuryCars(staticLuxuryCars);
+        console.warn('Failed to fetch menu data:', error);
       }
     };
 
@@ -173,8 +186,18 @@ const Header = () => {
               <MenuItem href="/about">ABOUT US</MenuItem>
               <MenuItem href="/rates">RATE LIST</MenuItem>
               <MenuItem href="/places">TOURIST PLACES</MenuItem>
-              <MenuItem href="/taxi" items={taxiServices}>TAXI SERVICES</MenuItem>
-              <MenuItem href="/luxury" items={luxuryCars}>LUXURY CARS</MenuItem>
+              <MenuItem 
+                href="/taxi" 
+                items={taxiServices.map(service => ({ url: `/taxi${service.url}`, name: service.name }))}
+              >
+                TAXI SERVICES
+              </MenuItem>
+              <MenuItem 
+                href="/luxury" 
+                items={luxuryCars.map(car => ({ url: `/luxury${car.url}`, name: car.name }))}
+              >
+                LUXURY CARS
+              </MenuItem>
               <MenuItem href="/contact">CONTACT US</MenuItem>
             </ul>
           </nav>
@@ -202,8 +225,18 @@ const Header = () => {
                   <MenuItem href="/about">ABOUT US</MenuItem>
                   <MenuItem href="/rates">RATE LIST</MenuItem>
                   <MenuItem href="/places">TOURIST PLACES</MenuItem>
-                  <MenuItem href="/taxi" items={taxiServices}>TAXI SERVICES</MenuItem>
-                  <MenuItem href="/luxury" items={luxuryCars}>LUXURY CARS</MenuItem>
+                  <MenuItem 
+                    href="/taxi" 
+                    items={taxiServices.map(service => ({ url: `/taxi${service.url}`, name: service.name }))}
+                  >
+                    TAXI SERVICES
+                  </MenuItem>
+                  <MenuItem 
+                    href="/luxury" 
+                    items={luxuryCars.map(car => ({ url: `/luxury${car.url}`, name: car.name }))}
+                  >
+                    LUXURY CARS
+                  </MenuItem>
                   <MenuItem href="/contact">CONTACT US</MenuItem>
                 </ul>
               </div>
