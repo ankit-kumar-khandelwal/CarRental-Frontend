@@ -1,0 +1,192 @@
+.car-showcase {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .car-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+  }
+  
+  .car-frame {
+    position: relative;
+    width: 80%;
+    height: auto;
+    transform-style: preserve-3d;
+    /* animation: carFloat 4s ease-in-out infinite; */
+  }
+  
+  .car-image {
+    width: 100%;
+    height: auto;
+    transform: scale(1.3);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+    animation: carEntry 1.5s ease-out;
+  }
+  
+  .glow-effect {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    /* background: radial-gradient(
+      circle,
+      rgba(23, 67, 227, 0.2) 0%,
+      rgba(23, 67, 227, 0) 70%
+    ); */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: glowPulse 3s ease-in-out infinite;
+    opacity: 0;
+  }
+  
+  .floating-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(23, 67, 227, 0.1);
+    animation: floatCircle 4s ease-in-out infinite;
+    opacity: 0;
+  }
+  
+  .circle-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .circle-2 {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 1s;
+  }
+  
+  .circle-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+  }
+  
+  .road-lines {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    opacity: 0;
+  }
+  
+  .line {
+    width: 80px;
+    height: 4px;
+    background: rgba(23, 67, 227, 0.3);
+    animation: lineMove 2s linear infinite;
+    opacity: 0;
+  }
+  
+  @keyframes carFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes carEntry {
+    0% {
+      opacity: 0;
+      transform: translateX(200px) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1.2);
+    }
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  
+  @keyframes floatCircle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes lineMove {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1023px) {
+    .car-showcase {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1024px) and (max-width: 1366px) {
+    .car-showcase {
+      height: 500px;
+    }
+    
+    .car-frame {
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 1367px) {
+    .car-showcase {
+      height: 600px;
+    }
+    
+    .car-frame {
+      width: 80%;
+    }
+  }
